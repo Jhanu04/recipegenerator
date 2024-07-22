@@ -7,7 +7,7 @@ import requests
 from PIL import Image
 from io import BytesIO
 
-# Load and preprocess the data
+
 df = pd.read_json('bbcgoodfood_recipes2.json')
 ddf = df.transpose()
 
@@ -86,8 +86,6 @@ def recommend_recipes(available_ingredients, ddf, model, difficulty_level):
 st.set_page_config(page_title="Recipe Generator", page_icon="🍲", layout="wide")
 
 st.title('Recipe Generator')
-
-# Placeholder for loading image
 loading_image = st.empty()
 loading_image.image('https://cdn.dribbble.com/users/3399824/screenshots/6521075/mascot-2-04.jpg', width=500)
 
@@ -101,4 +99,4 @@ difficulty_level = st.sidebar.selectbox("Difficulty Level", ["Easy", "Medium", "
 if st.sidebar.button('Generate Recipe'):
     filtered_ddf = recommend_recipes(available_ingredients, ddf, model, difficulty_level)
     if not filtered_ddf.empty:
-        loading_image.empty()  # Clear the loading image only if a recipe is found
+        loading_image.empty()  
