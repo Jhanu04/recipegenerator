@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 import json
 import time
 
-# Function to scrape recipe details from a URL
+
 def scrape_recipe_details(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -76,7 +76,7 @@ def scrape_recipe_details(url):
         'Difficulty': difficulty
     }
 
-# List of recipe URLs
+
 recipe_urls = [
     'https://www.bbcgoodfood.com/recipes/easy-chocolate-cake',
     'https://www.bbcgoodfood.com/recipes/oven-baked-risotto',
@@ -481,18 +481,14 @@ recipe_urls = [
     'https://www.bbcgoodfood.com/recipes/italian-borlotti-bean-pumpkin-farro-soup'
     ]
 
-# Dictionary to store scraped data
 recipes_data = {}
 
-# Scrape data from each recipe URL
+
 for url in recipe_urls:
     recipe_details = scrape_recipe_details(url)
     recipes_data[url] = recipe_details
-
-    # Add a delay to avoid overwhelming the server
     time.sleep(2)
 
-# Save the scraped data to a JSON file
 with open('bbcgoodfood_recipes.json', 'w') as json_file:
     json.dump(recipes_data, json_file, indent=4)
 
